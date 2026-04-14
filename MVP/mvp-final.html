@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidelbrando Fernandes | Portfólio</title>
+    <style>
+        /* ESTILIZAÇÃO (CSS) */
+        :root {
+            --primary: #2563eb;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --text: #334155;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--light);
+        }
+
+        /* Flexbox no Cabeçalho */
+        header {
+            background-color: var(--dark);
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: var(--primary); }
+
+        /* Seções */
+        section { padding: 4rem 5%; }
+        h2 { 
+            margin-bottom: 2rem; 
+            text-align: center; 
+            font-size: 2rem;
+            color: var(--dark);
+        }
+
+        #sobre { background: white; }
+        .sobre-content { max-width: 800px; margin: 0 auto; text-align: center; }
+
+        /* Grid nos Projetos */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover { transform: translateY(-5px); }
+        .project-card h3 { margin-bottom: 0.5rem; color: var(--primary); }
+        .project-card p { font-size: 0.9rem; margin-bottom: 1rem; }
+        .tag {
+            display: inline-block;
+            background: #e2e8f0;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-right: 5px;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsividade Básica */
+        @media (max-width: 600px) {
+            header { flex-direction: column; gap: 1rem; }
+            nav ul { gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><strong>Hidelbrando</strong> Fernandes</div>
+        <nav>
+            <ul>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="sobre">
+            <div class="sobre-content">
+                <h2>Sobre Mim</h2>
+                <p>Desenvolvedor e estudante focado em criar experiências web sólidas utilizando tecnologias nativas e modernas.</p>
+            </div>
+        </section>
+
+        <section id="projetos">
+            <h2>Meus Projetos</h2>
+            <div id="lista-projetos" class="projects-container">
+                </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Hidelbrando Fernandes. Desenvolvido para fins acadêmicos.</p>
+    </footer>
+
+    <script>
+        const meusProjetos = [
+            {
+                titulo: "Landing Page Moderna",
+                descricao: "Site institucional responsivo com foco em UI/UX e performance.",
+                tags: ["HTML5", "CSS3"],
+            },
+            {
+                titulo: "Cronômetro Pomodoro",
+                descricao: "Aplicação de produtividade com controle de tempo e notificações sonoras.",
+                tags: ["HTML5", "CSS3", "JavaScript"],
+            },
+            {
+                titulo: "Conversor de Moedas",
+                descricao: "Consumo de API externa para conversão de câmbio em tempo real.",
+                tags: ["HTML5", "JavaScript"],
+            }
+        ];
+
+        function renderizarProjetos() {
+            const container = document.getElementById('lista-projetos');
+            
+            container.innerHTML = meusProjetos.map(projeto => `
+                <div class="project-card">
+                    <h3>${projeto.titulo}</h3>
+                    <p>${projeto.descricao}</p>
+                    <div class="tags">
+                        ${projeto.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        window.onload = renderizarProjetos;
+    </script>
+</body>
+</html>
